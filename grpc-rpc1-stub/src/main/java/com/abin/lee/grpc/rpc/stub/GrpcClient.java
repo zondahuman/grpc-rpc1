@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 
 public class GrpcClient {
     public static void main(String[] args) throws Exception {
-        ManagedChannel channel = NettyChannelBuilder.forAddress("127.0.0.1", 8080).usePlaintext(true).build();
+        ManagedChannel channel = NettyChannelBuilder.forAddress("127.0.0.1", 10086).usePlaintext(true).build();
         //同步调用(异步调用的话，就是：SendMailServiceGrpc.newFutureStub(channel))
         OrderServiceGrpc.OrderServiceBlockingStub stub = OrderServiceGrpc.newBlockingStub(channel);
 
