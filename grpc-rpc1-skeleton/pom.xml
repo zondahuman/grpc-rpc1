@@ -12,4 +12,18 @@
     <artifactId>grpc-rpc1-skeleton</artifactId>
 
 
+
+    <dependencies>
+        <dependency>
+            <artifactId>grpc-rpc1-api</artifactId>
+            <groupId>com.abin.lee</groupId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+    </dependencies>
+
+
+
+
+
 </project>
