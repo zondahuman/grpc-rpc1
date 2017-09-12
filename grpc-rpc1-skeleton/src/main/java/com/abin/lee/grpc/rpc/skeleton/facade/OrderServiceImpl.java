@@ -1,5 +1,6 @@
 package com.abin.lee.grpc.rpc.skeleton.facade;
 
+import com.abin.lee.grpc.rpc.common.util.JsonUtil;
 import com.abin.lee.grpc.rpc.service.OrderRequest;
 import com.abin.lee.grpc.rpc.service.OrderResponse;
 import com.abin.lee.grpc.rpc.service.OrderServiceGrpc;
@@ -15,11 +16,9 @@ public class OrderServiceImpl extends OrderServiceGrpc.OrderServiceImplBase {
 
     @Override
     public void createOrder(OrderRequest request, StreamObserver<OrderResponse> responseObserver) {
-        super.createOrder(request, responseObserver);
+        System.out.println("request= " + request.toString());
+
     }
 
-    @Override
-    public ServerServiceDefinition bindService() {
-        return super.bindService();
-    }
+
 }

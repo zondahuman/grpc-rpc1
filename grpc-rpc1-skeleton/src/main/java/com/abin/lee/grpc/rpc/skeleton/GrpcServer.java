@@ -14,7 +14,10 @@ public class GrpcServer {
     public static void main(String[] args) throws Exception {
         Server server = NettyServerBuilder.forPort(10086).addService(new OrderServiceImpl()).build();
         server.start();
-        System.out.println("server startup at 8080");
+        System.out.println("............................................................................................................................");
+        System.out.println(".................................................GRPC Server is Running now!................................................");
+        System.out.println("............................................................................................................................");
+//        System.in.read(); // 按任意键退出
         server.awaitTermination();
     }
 }

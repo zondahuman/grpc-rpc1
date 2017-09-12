@@ -16,7 +16,14 @@
 
 
 
+    <dependencies>
+        <dependency>
+            <artifactId>grpc-rpc1-common</artifactId>
+            <groupId>com.abin.lee</groupId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 
+    </dependencies>
 
 
 
