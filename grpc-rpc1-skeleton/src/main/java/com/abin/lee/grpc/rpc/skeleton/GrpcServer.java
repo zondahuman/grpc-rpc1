@@ -1,6 +1,7 @@
 package com.abin.lee.grpc.rpc.skeleton;
 
 import com.abin.lee.grpc.rpc.skeleton.facade.OrderServiceImpl;
+import com.abin.lee.grpc.rpc.skeleton.facade.TeamServiceImpl;
 import io.grpc.Server;
 import io.grpc.netty.NettyServerBuilder;
 
@@ -12,11 +13,17 @@ import io.grpc.netty.NettyServerBuilder;
 
 public class GrpcServer {
     public static void main(String[] args) throws Exception {
-        Server server = NettyServerBuilder.forPort(10086).addService(new OrderServiceImpl()).build();
+        NettyServerBuilder builder = NettyServerBuilder.forPort(10086);
+        builder.addService(new OrderServiceImpl());
+        builder.addService(new TeamServiceImpl());
+
+        Server server = builder.build();
         server.start();
+
         System.out.println("............................................................................................................................");
         System.out.println(".................................................GRPC Server is Running now!................................................");
         System.out.println("............................................................................................................................");
+
 //        System.in.read(); // 按任意键退出
         server.awaitTermination();
     }

@@ -1,8 +1,6 @@
 package com.abin.lee.grpc.rpc.stub;
 
-import com.abin.lee.grpc.rpc.service.OrderRequest;
-import com.abin.lee.grpc.rpc.service.OrderResponse;
-import com.abin.lee.grpc.rpc.service.OrderServiceGrpc;
+import com.abin.lee.grpc.rpc.service.*;
 import com.google.common.base.Verify;
 import io.grpc.ManagedChannel;
 import io.grpc.Status;
@@ -20,16 +18,26 @@ public class GrpcClient {
     public static void main(String[] args) {
         try {
             ManagedChannel channel = NettyChannelBuilder.forAddress("localhost", 10086).usePlaintext(true).build();
-            //同步调用(异步调用的话，就是：SendMailServiceGrpc.newFutureStub(channel))
-            OrderServiceGrpc.OrderServiceBlockingStub stub = OrderServiceGrpc.newBlockingStub(channel);
 
+            System.out.println("--------------------------------------------OrderServiceGrpc----------------------------------------------------");
+            //同步调用(异步调用的话，就是：SendMailServiceGrpc.newFutureStub(channel))
+            OrderServiceGrpc.OrderServiceBlockingStub orderServiceBlockingStub = OrderServiceGrpc.newBlockingStub(channel);
             //设置请求参数
-            OrderRequest param = OrderRequest.newBuilder().setRecipient("admin@google.com").setTitle("Email Title").setContent("This is email content").build();
-            OrderResponse resp = stub.createOrder(param);
-            System.out.println(resp.getMsg() + "\t" + resp.getCode());
+            OrderRequest orderRequest = OrderRequest.newBuilder().setRecipient("admin@google.com").setTitle("Email Title").setContent("This is email content").build();
+            OrderResponse orderResponse = orderServiceBlockingStub.createOrder(orderRequest);
+            System.out.println(orderResponse.toString());
+            System.out.println("--------------------------------------------OrderServiceGrpc----------------------------------------------------");
+
+            System.out.println("--------------------------------------------TeamServiceGrpc----------------------------------------------------");
+            //同步调用(异步调用的话，就是：SendMailServiceGrpc.newFutureStub(channel))
+            TeamServiceGrpc.TeamServiceBlockingStub teamServiceBlockingStub = TeamServiceGrpc.newBlockingStub(channel);
+            //设置请求参数
+            TeamRequest teamRequest = TeamRequest.newBuilder().setTeamName("FISH").setBusinessId(1000000000L).setTeamAddress("peking").setTeamPrice(298.00).build();
+            TeamResponse teamResponse = teamServiceBlockingStub.createTeam(teamRequest);
+            System.out.println(teamResponse.toString());
+            System.out.println("--------------------------------------------TeamServiceGrpc----------------------------------------------------");
 
             //close
-
             channel.shutdown().awaitTermination(1, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             Status status = Status.fromThrowable(e);

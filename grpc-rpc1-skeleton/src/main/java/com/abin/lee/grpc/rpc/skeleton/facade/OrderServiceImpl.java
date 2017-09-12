@@ -17,7 +17,9 @@ public class OrderServiceImpl extends OrderServiceGrpc.OrderServiceImplBase {
     @Override
     public void createOrder(OrderRequest request, StreamObserver<OrderResponse> responseObserver) {
         System.out.println("request= " + request.toString());
-
+        OrderResponse orderResponse = OrderResponse.newBuilder().setCode(1).setMsg("Operate Success").build();
+        responseObserver.onNext(orderResponse);
+        responseObserver.onCompleted();
     }
 
 
