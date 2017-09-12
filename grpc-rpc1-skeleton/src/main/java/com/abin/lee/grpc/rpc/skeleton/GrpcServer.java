@@ -2,6 +2,7 @@ package com.abin.lee.grpc.rpc.skeleton;
 
 import com.abin.lee.grpc.rpc.skeleton.facade.OrderServiceImpl;
 import com.abin.lee.grpc.rpc.skeleton.facade.TeamServiceImpl;
+import com.abin.lee.grpc.rpc.skeleton.facade.VoucherServiceImpl;
 import io.grpc.Server;
 import io.grpc.netty.NettyServerBuilder;
 
@@ -16,6 +17,7 @@ public class GrpcServer {
         NettyServerBuilder builder = NettyServerBuilder.forPort(10086);
         builder.addService(new OrderServiceImpl());
         builder.addService(new TeamServiceImpl());
+        builder.addService(new VoucherServiceImpl());
 
         Server server = builder.build();
         server.start();
