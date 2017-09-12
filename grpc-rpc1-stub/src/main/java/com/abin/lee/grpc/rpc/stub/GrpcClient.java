@@ -37,14 +37,14 @@ public class GrpcClient {
             System.out.println(teamResponse.toString());
             System.out.println("--------------------------------------------TeamServiceGrpc----------------------------------------------------");
 
-            System.out.println("--------------------------------------------TeamServiceGrpc----------------------------------------------------");
+            System.out.println("--------------------------------------------VoucherServiceGrpc----------------------------------------------------");
             //同步调用(异步调用的话，就是：SendMailServiceGrpc.newFutureStub(channel))
             VoucherServiceGrpc.VoucherServiceBlockingStub voucherServiceBlockingStub = VoucherServiceGrpc.newBlockingStub(channel);
             //设置请求参数
             VoucherRequest voucherRequest = VoucherRequest.newBuilder().setVoucherName("FISH").setBatchId(1000000000L).setVoucherSize(10).setVoucherPrice(298.00).build();
             VoucherResponse voucherResponse = voucherServiceBlockingStub.createVoucher(voucherRequest);
             System.out.println(voucherResponse.toString());
-            System.out.println("--------------------------------------------TeamServiceGrpc----------------------------------------------------");
+            System.out.println("--------------------------------------------VoucherServiceGrpc----------------------------------------------------");
 
             //close
             channel.shutdown().awaitTermination(1, TimeUnit.SECONDS);
